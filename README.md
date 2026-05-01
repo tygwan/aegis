@@ -21,6 +21,18 @@ AI-assisted development hits the same six pains over and over:
 
 aegis addresses all six with markdown that both agents read identically, plus a deferred automation layer.
 
+## Who this is for
+
+Solo developers and small teams using AI agents (Claude Code, Codex CLI, others) on substantive software work — where decisions accumulate, milestones repeat, and "what did we decide last month?" needs an answer that doesn't depend on chat scrollback.
+
+It works for projects of any kind: web apps, CLI tools, libraries, mobile apps, research code, design systems, internal tooling. The seven standards are written to the universal-applicability constraint — none assume a stack, runtime, or domain.
+
+**It is probably not for you if:**
+
+- Your project is a one-week throwaway. The discipline pays back over months, not days.
+- You already have a strong project-management methodology (Scrum, Shape Up, etc.) that records decisions and verifications another way. aegis is record-keeping, not process — it overlaps awkwardly with prescribed processes.
+- You want a code-quality enforcer (linter, type checker). aegis does not check code; it captures *reasoning about* code.
+
 ## Quick start (5 minutes)
 
 In your project root:
@@ -31,6 +43,19 @@ In your project root:
 4. Add a 1-line `CLAUDE.md` pointing to `AGENTS.md` (Claude Code reads CLAUDE.md by default; Codex reads AGENTS.md natively).
 
 That is enough to bootstrap. Read the seven `standards/*.md` files when a question arises about how to apply the conventions; they are short and self-contained.
+
+## Adopting aegis on an existing project
+
+Most projects do not adopt aegis on day 1 — they adopt it sometime later, when the project has accumulated decisions, code, and possibly chaos. Here is the path for an in-flight project:
+
+1. **Write `AGENTS.md` first**, even before any record. Capture the project's current state honestly: stack, entry points, conventions you actually follow, conventions you wish you followed. This file is the new single source of truth — everything downstream points back to it.
+2. **Do not retroactively reconstruct old decisions.** D-records written months after the fact are weak — the reasoning has decayed. Instead, write a single "current state" record (D-001) that says: "this is what we do today; the historical reasoning is partial." From there, every *new* structural decision gets its own D-record.
+3. **Start P-records with the next non-trivial work**, not the last one. Plans are forward-looking; reconstructing past plans yields nothing.
+4. **First V-record** at the next meaningful work unit's completion. Older work that was never verified can be left as-is, or batch-verified in a single V-record marked as a current-state audit.
+5. **Define the next milestone (M1) starting today.** Earlier milestones, if any existed informally, do not need retroactive READMEs.
+6. **Don't try to migrate everything in one commit.** Adoption is a slow rolling change — each new artifact follows aegis, old artifacts coexist, and the project's discipline visibly tightens over the next few weeks.
+
+The discipline at the end of brownfield adoption looks identical to a greenfield project; the difference is only that older work isn't retrofitted.
 
 ## Repository layout
 

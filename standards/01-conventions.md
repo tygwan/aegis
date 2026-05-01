@@ -43,6 +43,21 @@ A `CLAUDE.md` file may exist at root. Its only purpose is to point at `AGENTS.md
 - **Listing every rule explicitly.** Reference the standards by link instead. AGENTS.md states *what applies*, not *what each rule says*.
 - **Out-of-date out-of-scope.** When a milestone closes and the next begins, the "Out of scope" list usually changes. Update it in the same commit that opens the new milestone.
 
+## Project-specific standards (extending aegis)
+
+aegis's seven standards are deliberately universal — they apply to any project type. A given project will often need *additional* rules that go beyond aegis: API design conventions for a SaaS, library publication conventions for an npm package, ethical-AI checklists for a research project, GraphQL schema conventions, and so on.
+
+These project-specific extensions live in **your project**, not in aegis:
+
+- Place them at `docs/standards/local/{NN}-{slug}.md`. Number them however you like (`L1`, `local-01`, or simply `01-api-design.md`) — aegis is silent on the format, but consistency within your project matters.
+- Reference them from `AGENTS.md` § Active conventions, alongside the aegis links. The reader should see one clean list.
+- Apply the same authoring discipline aegis uses: state the rule's trigger, rationale, format, and anti-patterns. A standard worth writing is worth writing at the same quality bar as aegis's own.
+- Maintain them with D-records. Adding, refining, or retiring a project-specific standard is itself a structural decision.
+
+A project-specific standard that turns out to be useful elsewhere may eventually graduate — either by upstreaming a refined version into aegis (via PR), or by becoming a published profile that other projects can adopt independently. Most stay project-local forever; that is fine.
+
+Anti-pattern: copying aegis's rules into your project's `local/` directory and editing them in place. That fork eventually drifts from the aegis canonical. Reference aegis's standards by link; only add *new* rules locally.
+
 ## Maintenance
 
 `AGENTS.md` and aegis's records (`docs/decisions/`, `docs/verifications/`) must stay in sync. When a structural decision changes the project's working style, update `AGENTS.md` in the same commit as the D-record. The decision record explains why; AGENTS.md propagates the consequence.

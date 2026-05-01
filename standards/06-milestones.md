@@ -46,11 +46,22 @@ The milestone README is updated as records land — primarily, ticking off scope
 
 ### Close
 
-When the goal is met (or honestly abandoned):
+A milestone closes in one of two ways: **Closed** (the goal was met) or **Abandoned** (the goal was wrong, infeasible, or invalidated by changed context). Both produce a retrospective; only the framing differs.
+
+When closing **Closed** (goal met):
 
 1. Write the **retrospective** — `docs/milestones/M{N}-{slug}/retrospective.md` (or a portfolio entry, depending on project conventions). Format per [`07-learn-from-friction.md`](07-learn-from-friction.md). Three sections: what worked, what to improve, next-milestone follow-ups.
-2. Mark the milestone README as **Closed** with the date.
+2. Mark the milestone README's status as **Closed** with the date.
 3. Confirm every V-record's follow-ups have been considered for the next milestone — either inherited or explicitly dropped with reasoning.
+
+When closing **Abandoned** (goal wrong / infeasible / context changed):
+
+1. Write the **retrospective** anyway. The framing shifts: instead of "what worked", focus on *what we learned about why the goal was wrong*; instead of "next-milestone follow-ups", focus on *what the next milestone should attempt instead*.
+2. Write a **D-record** documenting the abandonment — what changed, what the new direction is. This D-record supersedes any milestone-scoped D-records that no longer apply.
+3. Mark the milestone README's status as **Abandoned** with the date.
+4. Keep all V-records produced before abandonment — partial verifications have long-term value, even when the surrounding work is discarded.
+
+Abandoned milestones often produce the most valuable retrospectives. Skipping the retrospective on a "bad" milestone is the failure mode this discipline exists to prevent.
 
 ### Carry over
 

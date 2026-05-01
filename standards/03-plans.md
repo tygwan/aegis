@@ -44,6 +44,19 @@ See [`templates/Plan-record.template.md`](../templates/Plan-record.template.md).
 
 A P-record may reference D-records as constraints. A D-record may spawn a P-record as its implementation route.
 
+## Exploratory plans
+
+Some work is not deterministic. In research, data science, design exploration, and feasibility spikes, you do not know in advance which approach will win — the plan is to *try several* and pick. The standard P-record format assumes linear steps; for exploratory work, adapt as follows:
+
+- **Goal** stays as goal: "find the approach that meets accuracy ≥ 0.85 within 4 days."
+- **Steps** become **branches** — not "step 1, step 2, step 3" but "approach A, approach B, approach C", each with its own quick sub-steps and a quick-eval criterion.
+- **Done criterion** is the *selection* criterion ("one approach meets the threshold and is documented") plus a *budget* ("or 4 days elapsed, whichever first").
+- **Verification plan** describes how the chosen approach will be measured against the threshold; the unchosen approaches are documented in the V-record `§ Findings` section as negative results.
+
+Negative results — the approaches that did not win — are valuable. Do not delete them from the V-record. A future contributor weighing the same trade-off will benefit from knowing you already tried option C and why it lost.
+
+If the exploration concludes "none of the approaches met the threshold," that is a legitimate verification result (`Conclusion: not verified`). Either the goal needs revision (D-record) or the time-box needs extension (revise the plan).
+
 ## Revision
 
 Plans change. When a step turns out wrong:

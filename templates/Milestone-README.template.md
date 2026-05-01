@@ -4,10 +4,12 @@
 
 | | |
 |---|---|
-| **Status** | Open / In progress / Closed |
+| **Status** | Open / In progress / Closed / Abandoned |
 | **Opened** | YYYY-MM-DD |
-| **Closed** | YYYY-MM-DD (fill at close) |
+| **Closed** | YYYY-MM-DD (fill at close or abandonment) |
 | **Owner** | {name} |
+
+> **Abandoned** is not failure — it is honest closure of a milestone whose goal was wrong, whose scope was infeasible, or whose context changed. Per [aegis 06-milestones](https://github.com/tygwan/aegis), abandoned milestones still get a retrospective; the lessons from a failed milestone are often the most valuable.
 
 ## Goal
 
@@ -75,3 +77,10 @@
 - [ ] Each V-record's follow-ups: either listed in the retrospective `§ Next-milestone follow-ups` or explicitly dropped with reasoning
 - [ ] `AGENTS.md` "Out of scope" updated for the next milestone
 - [ ] Status above changed to **Closed**
+
+## Abandonment checklist (when closing as Abandoned)
+
+- [ ] Retrospective written, focused on *why this milestone was wrong* and *what the next milestone should look like instead*
+- [ ] D-record written explaining the abandonment (what changed, what the new direction is — supersedes the milestone's open D-records if any)
+- [ ] Status above changed to **Abandoned**
+- [ ] Any V-records produced before abandonment are kept — partial verification has long-term value
