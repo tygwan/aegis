@@ -38,9 +38,9 @@ It works for projects of any kind: web apps, CLI tools, libraries, mobile apps, 
 In your project root:
 
 1. Copy `templates/AGENTS.template.md` → `AGENTS.md`. Fill in three fields: project name, stack, primary entry points.
-2. Copy `templates/D-record.template.md` → `docs/decisions/D-001-{slug}.md` whenever you make a structural decision.
-3. Copy `templates/V-record.template.md` → `docs/verifications/V-001-{slug}.md` after every meaningful unit of work.
-4. Add a 1-line `CLAUDE.md` pointing to `AGENTS.md` (Claude Code reads CLAUDE.md by default; Codex reads AGENTS.md natively).
+2. **Copy your filled-in `AGENTS.md` to `CLAUDE.md`** — identical content. Both files must stay synchronized so Claude Code and Codex see the same conventions. (This is *not* a pointer pattern; both files are full duplicates. See [D-004](docs/decisions/D-004-agents-claude-md-full-sync.md) for why.)
+3. Copy `templates/D-record.template.md` → `docs/decisions/D-001-{slug}.md` whenever you make a structural decision.
+4. Copy `templates/V-record.template.md` → `docs/verifications/V-001-{slug}.md` after every meaningful unit of work.
 
 That is enough to bootstrap. Read the seven `standards/*.md` files when a question arises about how to apply the conventions; they are short and self-contained.
 

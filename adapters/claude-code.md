@@ -4,20 +4,21 @@ How Claude Code (Anthropic's CLI and IDE extensions) reads and applies aegis sta
 
 ## Entry points
 
-Claude Code automatically reads two files at the project root:
+Claude Code automatically reads `CLAUDE.md` at the project root and loads its content into the session's system context. It does not auto-load `AGENTS.md`.
 
-- **`CLAUDE.md`** — Claude Code's native convention file.
-- **`AGENTS.md`** — read if `CLAUDE.md` references it (Claude Code does not load `AGENTS.md` natively).
+aegis convention (per [D-004](../docs/decisions/D-004-agents-claude-md-full-sync.md)): both `AGENTS.md` and `CLAUDE.md` exist at the project root with **identical content**. This is *not* a pointer pattern — both files contain the full conventions verbatim.
 
-aegis convention: keep `AGENTS.md` as the single source of truth and let `CLAUDE.md` be a one-line pointer:
+Why identical sync rather than pointer:
 
-```markdown
-# CLAUDE.md
+- A pointer (`CLAUDE.md` containing only "see AGENTS.md") relies on Claude Code actively following the redirect. That behavior is not formally guaranteed and varies across CLI versions and modes.
+- Identical content means Claude Code's auto-load gives Claude the full aegis conventions directly. No indirection, no version-dependent behavior.
+- Codex CLI auto-loads `AGENTS.md`, so it sees the same conventions from its own native file. Both agents — both files — same content.
 
-This project's conventions live in [`AGENTS.md`](AGENTS.md).
-```
+Drift discipline:
 
-Why this pattern: `AGENTS.md` is also the convention file for Codex CLI. By making it the canonical, both agents see the same rules. Without this, `CLAUDE.md` becomes the de facto canonical and Codex misses the conventions.
+- Edit `AGENTS.md` first by convention. Immediately mirror to `CLAUDE.md` in the same commit.
+- A commit that touches one and not the other is incomplete.
+- M3+ may add a sync script or a pre-commit hook; until then, the discipline is manual.
 
 ## Reading order
 

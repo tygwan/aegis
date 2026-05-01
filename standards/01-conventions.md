@@ -34,7 +34,47 @@ An aegis-conformant `AGENTS.md` has at minimum:
 
 `AGENTS.md` is markdown. It is **agent-agnostic**: Claude Code, Codex CLI, and any other AI agent reading it must derive the same behaviour. If a section depends on a specific agent feature, mark it with `[claude-code]` or `[codex]` and document the equivalent in the other agent's section.
 
-A `CLAUDE.md` file may exist at root. Its only purpose is to point at `AGENTS.md` (Claude Code reads `CLAUDE.md` by default; Codex reads `AGENTS.md` natively). It must not contain conventions of its own — that creates drift.
+## Two files, identical content
+
+aegis-conformant projects maintain **two** convention files at the repository root with **identical content**:
+
+- `AGENTS.md` — Codex CLI's native convention file (and the canonical-by-convention source when editing).
+- `CLAUDE.md` — Claude Code's native convention file.
+
+Both files are committed. Both contain the full conventions verbatim. When one is edited, the other is updated in the same commit.
+
+This pattern was chosen over a "thin pointer" approach (in which `CLAUDE.md` would redirect to `AGENTS.md`) because the pointer requires the agent to actively follow the redirect, which is not formally guaranteed for either CLI. Identical content means each agent's auto-loaded session context contains the full conventions directly, with no indirection. See [`docs/decisions/D-004`](../docs/decisions/D-004-agents-claude-md-full-sync.md) for the full reasoning.
+
+Drift discipline:
+
+- Edit `AGENTS.md` first by convention; immediately mirror to `CLAUDE.md`. (A future sync script or pre-commit hook may automate this — see [`adapters/mcp.md`](../adapters/mcp.md) for the M3+ plan.)
+- A commit that modifies one without the other is a bug; either fix it before pushing or open a follow-up commit.
+- For agents (human or AI) reading either file: assume the other contains identical content. If a discrepancy is detected, raise it as a problem to be reconciled, do not silently choose one.
+
+## Orchestration — when to do what
+
+Both `AGENTS.md` and `CLAUDE.md` should include this table inline, so an agent's auto-loaded session context contains the action map.
+
+| Situation / what user says | Read | Use template | Produce |
+|---|---|---|---|
+| Day 1 / convention setup | [01](01-conventions.md) | `AGENTS.template.md` | `AGENTS.md` (= `CLAUDE.md`) |
+| "X vs Y" / structural choice with non-trivial reversal cost | [02](02-decisions.md) | `D-record.template.md` | `docs/decisions/D-{NNN}-{slug}.md` |
+| Before non-trivial work (>1 day or >3 sub-tasks) | [03](03-plans.md) | `Plan-record.template.md` | `docs/plans/P-{NNN}-{slug}.md` |
+| End of meaningful work / "it's done" | [04](04-verification.md) | `V-record.template.md` | `docs/verifications/V-{NNN}-{slug}.md` |
+| Routine commit | [05](05-changes.md) | (commit format) | git commit |
+| Phase opens / "let's start M{N}" | [06](06-milestones.md) | `Milestone-README.template.md` | `docs/milestones/M{N}-{slug}/README.md` |
+| Phase closes (Closed or Abandoned) | [06](06-milestones.md) + [07](07-learn-from-friction.md) | `Retrospective.template.md` | `docs/milestones/M{N}-{slug}/retrospective.md` |
+| External narrative needed (portfolio) | [07](07-learn-from-friction.md) | `Portfolio-entry.template.md` | (project-specific location) |
+| Same friction recurred | [07](07-learn-from-friction.md) | (memory entry or standards refinement) | memory file or D-record |
+
+## Discipline reminders
+
+Inlined in `AGENTS.md` / `CLAUDE.md` as the closing reminder block:
+
+- A structural decision without a D-record is a future bug. Future-you, future contributors, and future agent sessions will reopen the same debate without context.
+- A V-record's findings must either feed the next milestone or be explicitly dropped — never silently disappear. The closed-loop guarantee is what makes friction productive.
+- `AGENTS.md` and `CLAUDE.md` must stay identical. Edit one, mirror to the other, in the same commit. See [D-004](../docs/decisions/D-004-agents-claude-md-full-sync.md).
+- When two standards seem to conflict, propose a refinement via D-record; do not silently work around. The standards are short by design — conflicts are a signal one of them is wrong, not that one should be ignored.
 
 ## Anti-patterns
 
