@@ -47,7 +47,7 @@ Keep only C5 (decisions), C8 (verification), C13 (learn-from-friction), C4 (chan
 **Cons**
 - Misses plan-record discipline (user explicitly requested).
 - Misses milestone framework (user explicitly requested).
-- Five rules dogfood scenario in yetamin is too thin to validate the system.
+- Five rules in a single dogfood scenario is too thin to validate the system across project types.
 
 ### Option C — Refined 7 (universal core + planning + milestones)
 
@@ -106,7 +106,7 @@ The seven standards:
   - The `01`...`07` numbering. Reordering is expensive (links and references break).
   - "Universal applicability" as a hard constraint. Domain-specific rules go elsewhere.
 - **Cost:**
-  - Existing dev-standards users (yetamin) need migration: their AGENTS.md and references update.
+  - Existing dev-standards users need migration: their AGENTS.md and references update.
   - Some loss of guidance for projects that needed C9-C12 — mitigated by the option of profiles in M3+.
 - **Open questions:**
   - Whether profiles return in M3 or later, and which ones (likely candidates: web-app profile bundling C9 + C10 + C11; library profile bundling parts of C12).

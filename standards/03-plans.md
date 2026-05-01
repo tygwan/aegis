@@ -8,7 +8,7 @@ Write a P-record before starting a unit of work that has any of these properties
 
 - Estimated to take **more than ~1 day** of focused effort.
 - Decomposes into **more than 3 distinct sub-tasks**.
-- Touches **more than one subsystem** (frontend + backend, code + infra, etc.).
+- Touches **more than one subsystem** (e.g. UI + data layer, parser + emitter, model + experiment, code + infra).
 - Has **non-obvious failure modes** that benefit from being enumerated upfront.
 - Has **a deadline** that requires sequencing.
 
@@ -39,8 +39,8 @@ See [`templates/Plan-record.template.md`](../templates/Plan-record.template.md).
 
 ## Plans vs decisions
 
-- **D-record** captures *what to build / how to architect*: "we use Postgres, not MySQL".
-- **P-record** captures *how to get there*: "Step 1, set up local Postgres; Step 2, write migration ...".
+- **D-record** captures *what to build / how to architect*: "we use approach X, not approach Y".
+- **P-record** captures *how to get there*: the ordered steps that turn the chosen approach into delivered work.
 
 A P-record may reference D-records as constraints. A D-record may spawn a P-record as its implementation route.
 

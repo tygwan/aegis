@@ -42,8 +42,8 @@ Use this lookup before reaching for a standard or template. When in doubt, fall 
 
 ### Language
 
-- Internal collaboration in chat: **Korean** (project owner's preference).
-- All authored documents (markdown, code comments): **English**, unless a document is explicitly marked Korean for portfolio/external-narrative purposes.
+- All authored documents (markdown, code comments) are in **English** — aegis is a universal-adoption project and English is its lingua franca.
+- Chat language follows the human collaborator's lead. Agents should match whichever language the user is conversing in; no preference is encoded into aegis itself.
 
 ### Records
 

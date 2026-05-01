@@ -39,7 +39,7 @@ Start a fresh repository. Cherry-pick the rules that survive scrutiny. Build the
 - Naming opportunity: the new name ("aegis") frames the value proposition better than "dev-standards" did.
 
 **Cons**
-- New repo has zero adoption history. Existing dev-standards consumers (yetamin) need migration.
+- New repo has zero adoption history. Existing dev-standards consumers need migration.
 - Lose the literal git history of dev-standards (mitigated by linking from aegis README).
 
 ### Option C — `aegis` as a successor repo, dev-standards archived
@@ -63,7 +63,7 @@ Same as B, but explicitly archive `dev-standards` and point its README at aegis.
   - MIT license, TypeScript-first automation (see D-002).
   - Universal-applicability constraint for every standard and template — projects of any type must be able to adopt.
 - **Cost:**
-  - Migration work for yetamin (the only current consumer of dev-standards).
+  - Migration work for existing dev-standards consumers.
   - One-time content authoring of all M1 markdown.
 - **Open questions** (to be resolved by later D-records):
   - Whether profiles ever reappear, and in what form.

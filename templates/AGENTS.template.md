@@ -10,11 +10,13 @@
 
 ## Stack
 
-- **Language(s):** {e.g. TypeScript, Python}
+> Adapt rows to your project's reality. Drop rows that don't apply (a CLI tool may not have persistence; a library may not have a runtime/framework distinct from its language).
+
+- **Language(s):** {e.g. TypeScript, Python, Rust, Go}
 - **Runtime / framework:** {e.g. Node 20, Next.js 15, Django 5}
-- **Package manager:** {e.g. pnpm 10, uv}
-- **Persistence / infra:** {e.g. Postgres 16, Redis, AWS Seoul}
-- **Test framework:** {e.g. vitest, pytest}
+- **Package manager / build:** {e.g. pnpm 10, uv, cargo, gradle}
+- **Persistence / infra:** {e.g. Postgres 16, Redis, S3 — drop if N/A}
+- **Test framework:** {e.g. vitest, pytest, cargo test}
 
 ## Reading order
 
