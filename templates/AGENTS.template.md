@@ -27,6 +27,8 @@ When starting a fresh session, read in this order:
 3. `docs/decisions/` — the active D-records, especially the most recent
 4. {project-specific: e.g. the architecture spec, the current milestone README}
 
+<!-- aegis:orchestration:begin -->
+
 ## Orchestration — when to do what
 
 Use this lookup before reaching for a standard or template. Standards live in the aegis repo; link out to them as needed.
@@ -42,6 +44,8 @@ Use this lookup before reaching for a standard or template. Standards live in th
 | Phase closes (Closed or Abandoned) | [06-milestones](https://github.com/tygwan/aegis/blob/main/standards/06-milestones.md) + [07-learn-from-friction](https://github.com/tygwan/aegis/blob/main/standards/07-learn-from-friction.md) | `Retrospective.template.md` | `docs/milestones/M{N}-{slug}/retrospective.md` |
 | External narrative (portfolio) | [07-learn-from-friction](https://github.com/tygwan/aegis/blob/main/standards/07-learn-from-friction.md) | `Portfolio-entry.template.md` | {project-specific location} |
 | Same friction recurred | [07-learn-from-friction](https://github.com/tygwan/aegis/blob/main/standards/07-learn-from-friction.md) | (memory or standards refinement) | memory file or D-record |
+
+<!-- aegis:orchestration:end -->
 
 ## Active conventions
 
@@ -80,12 +84,16 @@ Per aegis [05-changes](https://github.com/tygwan/aegis/blob/main/standards/05-ch
 - {Auto-OK actions: e.g. "editing files, running tests, refactoring within a file"}
 - {Confirmation-required actions: e.g. "destructive git operations, dependency upgrades, deploys"}
 
+<!-- aegis:discipline:begin -->
+
 ## Discipline reminders
 
 - A structural decision without a D-record is a future bug.
 - A V-record's findings must either feed the next milestone or be explicitly dropped — never silently disappear.
 - `AGENTS.md` and `CLAUDE.md` must stay identical. Edit one, mirror to the other, in the same commit.
 - When two standards seem to conflict, propose a refinement via D-record; do not silently work around.
+
+<!-- aegis:discipline:end -->
 
 ## Out of scope (current milestone)
 

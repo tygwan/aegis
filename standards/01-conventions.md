@@ -76,6 +76,38 @@ Inlined in `AGENTS.md` / `CLAUDE.md` as the closing reminder block:
 - `AGENTS.md` and `CLAUDE.md` must stay identical. Edit one, mirror to the other, in the same commit. See [D-004](../docs/decisions/D-004-agents-claude-md-full-sync.md).
 - When two standards seem to conflict, propose a refinement via D-record; do not silently work around. The standards are short by design — conflicts are a signal one of them is wrong, not that one should be ignored.
 
+## Marker semantics — for aegis-managed sections in user files
+
+When aegis is installed into a user's project (per [`INSTALLING.md`](../INSTALLING.md) at repo root), aegis-managed sections inside the user's `AGENTS.md` and `CLAUDE.md` are wrapped in HTML-comment markers. This enables idempotent updates (aegis content can evolve without disturbing project-specific content) and mechanical detection.
+
+Marker shape:
+
+```html
+<!-- aegis:NAME:begin -->
+... aegis-canonical content ...
+<!-- aegis:NAME:end -->
+```
+
+Currently defined marker names:
+
+| Name | Wraps |
+|---|---|
+| `orchestration` | The "Orchestration — when to do what" table |
+| `discipline` | The "Discipline reminders" block |
+
+Properties:
+
+- HTML comments are invisible in rendered markdown viewers and on GitHub's markdown rendering. They do not affect human reading.
+- Each `:begin` marker must have a matching `:end`. Mismatched markers are a bug to surface (the install procedure stops and reports), not to silently repair.
+- Content **between** markers is owned by aegis. The user should not edit it manually — edits will be overwritten on the next install/update. To change canonical content, file a refinement upstream via D-record.
+- Content **outside** markers is owned by the project. Aegis never modifies it.
+- Aegis itself dogfoods this convention: this repository's own `AGENTS.md` and `CLAUDE.md` use the same markers around their orchestration and discipline blocks.
+
+Future evolution:
+
+- Marker names may be added (e.g. a future `aegis:reading-order` or `aegis:records`). Existing names stay stable.
+- The marker shape (`<!-- aegis:NAME:begin -->` / `<!-- aegis:NAME:end -->`) is committed-to. A version field may be added later (`<!-- aegis:NAME:begin v=2 -->`) but the `:begin`/`:end` shape will not change.
+
 ## Anti-patterns
 
 - **Treating `AGENTS.md` as a README.** README is for humans evaluating the project; AGENTS.md is for contributors (human or AI) actually working on it. Different audience, different content.

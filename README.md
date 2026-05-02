@@ -33,16 +33,23 @@ It works for projects of any kind: web apps, CLI tools, libraries, mobile apps, 
 - You already have a strong project-management methodology (Scrum, Shape Up, etc.) that records decisions and verifications another way. aegis is record-keeping, not process — it overlaps awkwardly with prescribed processes.
 - You want a code-quality enforcer (linter, type checker). aegis does not check code; it captures *reasoning about* code.
 
-## Quick start (5 minutes)
+## Installation
 
-In your project root:
+aegis is installed by an AI agent (Claude Code, Codex CLI, or similar) following a safe, detection-first procedure that never overwrites existing project content. In your target project, give your agent a prompt like:
 
-1. Copy `templates/AGENTS.template.md` → `AGENTS.md`. Fill in three fields: project name, stack, primary entry points.
-2. **Copy your filled-in `AGENTS.md` to `CLAUDE.md`** — identical content. Both files must stay synchronized so Claude Code and Codex see the same conventions. (This is *not* a pointer pattern; both files are full duplicates. See [D-004](docs/decisions/D-004-agents-claude-md-full-sync.md) for why.)
-3. Copy `templates/D-record.template.md` → `docs/decisions/D-001-{slug}.md` whenever you make a structural decision.
-4. Copy `templates/V-record.template.md` → `docs/verifications/V-001-{slug}.md` after every meaningful unit of work.
+> "Read https://github.com/tygwan/aegis/blob/main/INSTALLING.md and follow the installation procedure for this project."
 
-That is enough to bootstrap. Read the seven `standards/*.md` files when a question arises about how to apply the conventions; they are short and self-contained.
+The agent will:
+
+1. **Detect** what already exists at the project root (`AGENTS.md`, `CLAUDE.md`, `docs/` aegis structure).
+2. **Classify** the install state (greenfield vs. several brownfield variants).
+3. **Plan** the safe set of changes and present it to you in markdown.
+4. **Confirm** with you before any modification.
+5. **Execute** only after explicit approval, using HTML-comment markers around aegis-managed sections so future updates touch only those regions.
+
+Greenfield (empty) projects resolve in roughly 1 minute. Brownfield (in-flight) projects preserve all existing content and inject only marked sections.
+
+For the full procedure, see [`INSTALLING.md`](INSTALLING.md). For the manual fallback (no AI agent), see that document's § Manual procedure.
 
 ## Adopting aegis on an existing project
 
@@ -62,8 +69,9 @@ The discipline at the end of brownfield adoption looks identical to a greenfield
 ```
 aegis/
 ├── README.md                    you are here
+├── INSTALLING.md                agent-readable install procedure (safe, idempotent)
 ├── AGENTS.md                    aegis follows aegis (dogfood)
-├── CLAUDE.md                    1-line pointer to AGENTS.md
+├── CLAUDE.md                    byte-identical to AGENTS.md (per D-004)
 ├── LICENSE                      MIT
 │
 ├── standards/                   the seven rules
